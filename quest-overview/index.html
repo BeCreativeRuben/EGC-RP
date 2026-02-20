@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kingdom Quest – Overzicht voor het team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Kingdom Quest</a>
+      <ul class="nav-links">
+        <li><a href="#wat-we-bouwen">Wat we bouwen</a></li>
+        <li><a href="#questlijnen">Questlijnen</a></li>
+        <li><a href="#tiers">Tiers</a></li>
+        <li><a href="#kd-levels">KD-levels & NPC's</a></li>
+        <li><a href="#storyline">Storyline & Wereld</a></li>
+        <li><a href="#koning">Koning & metgezellen</a></li>
+        <li><a href="#plugins">Plugins</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#meer-info">Meer info</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu openen" type="button"></button>
+    </div>
+  </nav>
+
+  <header id="hero" class="hero">
+    <div class="hero-decoration hero-crown" aria-hidden="true"></div>
+    <h1 class="hero-title">Kingdom Quest</h1>
+    <p class="hero-subtitle">Overzicht voor het team</p>
+    <p class="hero-tagline">Van niets naar gezag</p>
+  </header>
+
+  <main>
+    <section id="wat-we-bouwen" class="section section-collapsible">
+      <h2 class="section-title">Wat we bouwen</h2>
+      <div class="section-content">
+        <p>Meerdere <strong>questlijnen</strong> voor een Kingdom-achtige wereld, allemaal in het <strong>Nederlands</strong>: twee <strong>handelsposten</strong> (Noordhaven, Zuidmarkt) waar spelers kunnen starten, één coherente <strong>Koninkrijk-hoofdlijn</strong> die in een haven begint en naar de andere en naar eigen locaties leidt, <strong>vertakkingen</strong> (handel/leveringen, intrige/vertrouwen, verlaten locatie/gevaar) die tags van de hoofdlijn kunnen vereisen, <strong>standalone</strong> quests per haven of losse locatie, en een <strong>groepsquestlijn</strong> (BetonQuest Parties). De koning kan op chapter-eindes en eindbazen verder, met genoeg metgezellen van zijn eigen groep. Vanaf <strong>KD level 2</strong> een quest-NPC (handelskar, door spelers te bouwen) die de <strong>BattlePass</strong> ontgrendelt (daily quests, los van storylines) plus <strong>2 startersquests</strong> — de ontdekking van de handelsposten. Bij aankomst op een handelspost: korte backstory van de locatie (replaymod-achtige shots van de stad + gesproken uitleg) en een tip naar een specifiek persoon in de stad; daar begint de individuele questlijn. Vanaf <strong>level 5</strong> de Kingdom Quest NPC in de “King’s Advice Room” voor de echte Kingdom Quests.</p>
+        <p class="section-links"><a href="#questlijnen">→ Questlijn-architectuur</a> · <a href="#tiers">→ Tier-progressie</a> · <a href="#kd-levels">→ KD-levels & NPC's</a></p>
+      </div>
+    </section>
+
+    <section id="questlijnen" class="section section-collapsible">
+      <h2 class="section-title">Questlijn-architectuur (onderling verbonden + standalone)</h2>
+      <div class="section-content">
+        <p class="layout-intro">Structuur die je stap voor stap kunt uitwerken:</p>
+        <div class="layout-diagram">
+          <div class="layout-group layout-handelsposten">
+            <h3 class="layout-group-title">Handelsposten</h3>
+            <div class="layout-nodes">
+              <div class="layout-node" id="node-noordhaven" title="Noordhaven">Noordhaven</div>
+              <div class="layout-node" id="node-zuidmarkt" title="Zuidmarkt">Zuidmarkt</div>
+            </div>
+          </div>
+          <div class="layout-group layout-groep">
+            <h3 class="layout-group-title">Groepsquests – Parties</h3>
+            <div class="layout-nodes">
+              <div class="layout-node layout-node-main" id="node-groep" title="Groep questline">Groep questline</div>
+            </div>
+          </div>
+          <div class="layout-group layout-standalone">
+            <h3 class="layout-group-title">Standalone</h3>
+            <div class="layout-nodes">
+              <div class="layout-node" id="node-haven1" title="Haven 1 alleen">Haven 1 alleen</div>
+              <div class="layout-node" id="node-haven2" title="Haven 2 alleen">Haven 2 alleen</div>
+              <div class="layout-node" id="node-los" title="Losse locatie">Losse locatie</div>
+            </div>
+          </div>
+          <div class="layout-group layout-hoofdlijn">
+            <h3 class="layout-group-title">Hoofdlijn</h3>
+            <div class="layout-nodes">
+              <div class="layout-node layout-node-kingdom" id="node-koninkrijk" title="Koninkrijk hoofdlijn">Koninkrijk hoofdlijn</div>
+            </div>
+          </div>
+          <div class="layout-group layout-vertakkingen">
+            <h3 class="layout-group-title">Vertakkingen</h3>
+            <div class="layout-nodes">
+              <div class="layout-node" id="node-handel" title="Handel / leveringen">Handel / leveringen</div>
+              <div class="layout-node" id="node-intrige" title="Intrige / vertrouwen">Intrige / vertrouwen</div>
+              <div class="layout-node" id="node-verlaten" title="Verlaten locatie / gevaar">Verlaten locatie / gevaar</div>
+            </div>
+          </div>
+        </div>
+        <div class="layout-descriptions">
+          <p><strong>Hoofdlijn (bv. package <code>koninkrijk</code>):</strong> Eén coherente Kingdom-boog die in één handelshaven kan starten, de speler naar de andere en naar eigen locaties stuurt, en vertakkingen ontgrendelt of hint (bv. via conditions/tags zoals <code>koninkrijk.hoofd_done</code>).</p>
+          <p><strong>Vertakkingen (aparte packages):</strong> Bv. handel/leveringen, intrige/vertrouwen, “verlaten plek”/gevaar. Elke vertakking kan een tag van de hoofdlijn (of van een haven-intro-quest) vereisen zodat de wereld verbonden aanvoelt.</p>
+          <p><strong>Individuele lijnen (havens):</strong> De 2 startersquests zijn de ontdekking van de handelsposten. Bij aankomst: backstory van de locatie (replaymod-achtige shots van de stad + gesproken uitleg) en een tip naar een persoon in de stad — daar start de individuele questlijn. Standalone: kleine eenmalige quests per haven/locatie, los van de hoofdlijn.</p>
+          <p><strong>Companion-questlijnen (metgezellen):</strong> <strong>Scout</strong> eerst, daarna <strong>Soldaat</strong> — de Soldaat-questlijn vereist dat <code>scout_questline_done</code> staat; zo tellen spelers pas als “soldaat”-metgezel nadat ze Scout hebben afgerond.</p>
+          <p><strong>Naamsuggestie packages (Nederlands):</strong> <code>koninkrijk</code> (hoofd), <code>noordhaven</code>, <code>zuidmarkt</code>, <code>handel</code>, <code>intrige</code>, <code>verlaten_toren</code> (of vergelijkbaar), plus 1–2 standalone packages zoals <code>haven_verhalen</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tiers" class="section section-collapsible">
+      <h2 class="section-title">Tier-progressie</h2>
+      <div class="section-content">
+        <p class="tiers-intro">Van laag naar hoog: van Tribe tot Grand Imperium.</p>
+        <div class="tiers-path">
+          <div class="tiers-zone" data-zone="vroeg">
+            <span class="tiers-zone-label">Vroeg – identiteit & overleven</span>
+            <div class="tiers-steps">
+              <span class="tier-step">Tribe</span>
+              <span class="tier-step">Outpost</span>
+              <span class="tier-step">Hamlet</span>
+              <span class="tier-step">Village</span>
+              <span class="tier-step">Town</span>
+              <span class="tier-step">Manor</span>
+              <span class="tier-step">Bastion</span>
+              <span class="tier-step">Barony</span>
+            </div>
+          </div>
+          <div class="tiers-zone" data-zone="midden">
+            <span class="tiers-zone-label">Midden – verantwoordelijkheid & bondgenootschappen</span>
+            <div class="tiers-steps">
+              <span class="tier-step">Viscounty</span>
+              <span class="tier-step">County</span>
+              <span class="tier-step">March</span>
+              <span class="tier-step">Duchy</span>
+              <span class="tier-step">Grand Duchy</span>
+              <span class="tier-step">Commonwealth</span>
+              <span class="tier-step">Kingdom</span>
+              <span class="tier-step">Grand Kingdom</span>
+            </div>
+          </div>
+          <div class="tiers-zone" data-zone="laat">
+            <span class="tiers-zone-label">Laat – erfenis & schaal</span>
+            <div class="tiers-steps">
+              <span class="tier-step">Empire</span>
+              <span class="tier-step">Grand Empire</span>
+              <span class="tier-step">Imperium</span>
+              <span class="tier-step tier-step-end">Grand Imperium</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kd-levels" class="section section-collapsible">
+      <h2 class="section-title">KD-levels & NPC's</h2>
+      <div class="section-content">
+        <p>Er zijn <strong>20 Kingdom levels</strong> (1–20), gekoppeld aan de <a href="#tiers">Tier-progressie</a> (Tribe t/m Grand Imperium). Per level horen <strong>requirements qua builds en items</strong>: huizen, muren, strategische gebouwen (torens, poorten, kazerne), culturele gebouwen (tempel, markt, bibliotheek, troonzaal, enz.) — een echt werkend koninkrijk. Exacte aantallen per level kunnen later in een spreadsheet of config; hieronder de structuur en speciale regels.</p>
+        <p>Vanaf <strong>KD level 2</strong> staat op elk Kingdom een <strong>quest-NPC</strong> (handelskar, door spelers zelf te bouwen). Bij die NPC ontgrendelt men de <strong>BattlePass</strong> (daily quests, los van storylines) en <strong>2 startersquests</strong> (ontdekking handelsposten). Vanaf <strong>level 5</strong> komt de <strong>Kingdom Quest NPC</strong> in de <strong>"King's Advice Room"</strong>; alleen daar kan de koning de echte Kingdom Quests starten of verderzetten.</p>
+        <p>Als een speler bij een handelspost aankomt: backstory van de locatie (replaymod-achtige shots + gesproken uitleg) en een tip naar een persoon in de stad — <strong>van daar begint de individuele questlijn</strong> (Haven 1 alleen / Haven 2 alleen).</p>
+        <div class="kd-story-gate" id="kingdom-level-requirements">
+          <strong>Story-gate level 10:</strong> Je kunt <em>niet</em> van level 10 (County) naar level 11 (March) zonder de <strong>Kingdom Storyline</strong> tot het vereiste punt te hebben uitgespeeld. Plugin of BetonQuest checkt bv. tag <code>koninkrijk.county_chapter_done</code> voordat level-up naar 11 mogelijk is.
+        </div>
+
+        <h3 class="kd-table-title">Kingdom Level Requirements (1–20)</h3>
+        <p class="kd-table-intro">De 20 levels komen overeen met de tiers in de sectie Tier-progressie (Vroeg / Midden / Laat). Eisen schalen per level: meer huizen, langere muren, meer strategische en culturele gebouwen.</p>
+        <div class="kd-table-wrap">
+          <table class="kd-levels-table">
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>Tier</th>
+                <th>Fase</th>
+                <th>Requirements / opmerking</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Tribe</td><td>Vroeg</td><td>Thuis/claim; geen formele gebouwen verplicht.</td></tr>
+              <tr class="kd-row-special"><td>2</td><td>Outpost</td><td>Vroeg</td><td><strong>Handelskar gebouwd</strong> → BattlePass + startersquests. Optioneel: schuur/opslag.</td></tr>
+              <tr><td>3</td><td>Hamlet</td><td>Vroeg</td><td>2+ huizen, 1 gemeenschappelijke ruimte.</td></tr>
+              <tr><td>4</td><td>Village</td><td>Vroeg</td><td>4+ huizen, begin muur/palissade, 1 strategisch punt (toren/poort).</td></tr>
+              <tr class="kd-row-special"><td>5</td><td>Town</td><td>Vroeg</td><td>8+ huizen, muur, <strong>King's Advice Room</strong> gebouwd, 1 cultureel gebouw (markt/kapel).</td></tr>
+              <tr><td>6</td><td>Manor</td><td>Vroeg</td><td>Meer huizen, uitgebreidere muur, extra strategisch/cultureel gebouw.</td></tr>
+              <tr><td>7</td><td>Bastion</td><td>Vroeg</td><td>Versterkte verdediging, meerdere torens/poorten.</td></tr>
+              <tr><td>8</td><td>Barony</td><td>Vroeg</td><td>Volledige omwalling, raadzaal of vergelijkbaar.</td></tr>
+              <tr><td>9</td><td>Viscounty</td><td>Midden</td><td>Groei naar verantwoordelijkheid: meer gebouwen, betere materialen.</td></tr>
+              <tr class="kd-row-story-gate"><td>10</td><td>County</td><td>Midden</td><td>Eisen voor County (huizen, muren, strategisch, cultureel). <strong>Level 11 alleen na Kingdom Storyline</strong> (story-gate).</td></tr>
+              <tr><td>11</td><td>March</td><td>Midden</td><td>Na story-gate: verder uitbreiden.</td></tr>
+              <tr><td>12</td><td>Duchy</td><td>Midden</td><td>Duchy-niveau gebouwen en verdediging.</td></tr>
+              <tr><td>13</td><td>Grand Duchy</td><td>Midden</td><td>Uitgebreide culturele en strategische gebouwen.</td></tr>
+              <tr><td>14</td><td>Commonwealth</td><td>Midden</td><td>Meerdere wijken, grote omwalling.</td></tr>
+              <tr><td>15</td><td>Kingdom</td><td>Midden</td><td>Troonzaal, meerdere culturele gebouwen, kazerne, sterke muren.</td></tr>
+              <tr><td>16</td><td>Grand Kingdom</td><td>Midden</td><td>Volledige koninkrijk-set, monumenten.</td></tr>
+              <tr><td>17</td><td>Empire</td><td>Laat</td><td>Erfenis & schaal: monumentale gebouwen.</td></tr>
+              <tr><td>18</td><td>Grand Empire</td><td>Laat</td><td>Grote omwalling, meerdere forten.</td></tr>
+              <tr><td>19</td><td>Imperium</td><td>Laat</td><td>Maximale strategische en culturele uitbreiding.</td></tr>
+              <tr><td>20</td><td>Grand Imperium</td><td>Laat</td><td>Hoogste tier: monumentaal koninkrijk, eventueel item-donaties.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="kd-levels-cards">
+          <div class="kd-level-card">
+            <span class="kd-level-badge">KD level 2</span>
+            <h3>Handelskar</h3>
+            <p>BattlePass (daily quests) + 2 startersquests = ontdekking handelsposten. Bij handelspost: backstory (replay-shots + gesproken uitleg) en tip naar persoon in de stad → daar start de individuele questlijn.</p>
+          </div>
+          <div class="kd-level-card">
+            <span class="kd-level-badge">KD level 5</span>
+            <h3>King's Advice Room</h3>
+            <p>Kingdom Quest NPC waar de koning de echte Kingdom Quests kan starten.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="storyline" class="section section-collapsible">
+      <h2 class="section-title">Storyline & Wereld</h2>
+      <div class="section-content">
+        <p>Door de tijd heen zien spelers <strong>anomalies</strong> van een <strong>Seal</strong> die opengaat, en een <strong>Black Mage/Wizard</strong> die probeert te ontsnappen met zijn corrupte krachten. De wizard bestuurt dingen op de map via zijn krachten omdat hij zelf nog niet volledig van achter de seal uitkomt.</p>
+
+        <p><strong>3 werelden zijn samengevoegd</strong> in één realiteit: de <strong>Onderwereld</strong> (Black Mage + goons), de <strong>Oude Wereld</strong> (waar spelers vandaan komen, onwetend), en de <strong>Huidige Wereld</strong> (handelsposten + ruïnes). <strong>De Orde van Vijf</strong> (5 heroes/resistance) hebben de merge veroorzaakt om beschaving te redden — anders was de hele wereld kapot en was het plan van de wizard gelukt.</p>
+
+        <p>De <strong>handelsposten</strong> hebben overleefd omdat ze een deal hebben gemaakt met de wizard — een geheim dat alleen de eigenaren kennen. De <strong>finale boss battle</strong> vindt plaats bij de originele seal-locatie (lang verborgen); alle Kingdoms moeten samenwerken om de seal tegen te houden.</p>
+
+        <div class="storyline-cards">
+          <div class="storyline-card">
+            <h3>Black Mage / Wizard</h3>
+            <p><strong>Status:</strong> Oude, verzegelde antagonist (lang geleden verzegeld).</p>
+            <p><strong>Plan:</strong> De wereld kapot maken.</p>
+            <p><strong>Huidige situatie:</strong> Bestuurt dingen op de map via krachten; goons zijn betoverde mensen (NPCs, permanent corrupt).</p>
+          </div>
+
+          <div class="storyline-card">
+            <h3>De Orde van Vijf</h3>
+            <p><strong>Status:</strong> Nog in leven, maar niemand weet het; komen terug op het einde.</p>
+            <p><strong>Rollen:</strong> De Leider (nobody), De Ex-Koning, De Ex-Handelsmeester, De Culturele, De Nerd. Namen blijven abstract voor mysterieuze feeling.</p>
+            <p><strong>Ontdekking:</strong> Via ruïnes (hints), handelsposten questline, vertakkingen.</p>
+          </div>
+
+          <div class="storyline-card">
+            <h3>Handelsposten Eigenaren</h3>
+            <p><strong>Noordhaven:</strong> Stubborn, stoer, kordaat, bruut — houdt het geheim.</p>
+            <p><strong>Zuidmarkt:</strong> Losser, optimistisch — laat per ongeluk het geheim los; wordt later gepakt door Black Wizard; vervanger (rechterhand) neemt over.</p>
+            <p><strong>Geheim:</strong> Deal met wizard; handelsposten blijven functioneel na onthulling.</p>
+          </div>
+        </div>
+
+        <h3 class="storyline-subtitle">3 Werelden Gefuseerd</h3>
+        <ul class="storyline-list">
+          <li><strong>Onderwereld:</strong> Black Mage + goons komen hier vandaan; bron van corruptie en anomalies.</li>
+          <li><strong>Oude Wereld:</strong> Waar spelers vandaan komen (onwetend); enige wereld met hoop → geselecteerd door Orde van Vijf.</li>
+          <li><strong>Huidige Wereld:</strong> Handelsposten + ruïnes van Black Mage's onderwereldse krachten; waar de 3 werelden nu samenkomen.</li>
+        </ul>
+
+        <h3 class="storyline-subtitle">Seal-locatie</h3>
+        <p>Lang verborgen, magisch verborgen; verschijnt pas bij bepaalde voorwaarden. Hier vindt de finale boss battle plaats.</p>
+
+        <h3 class="storyline-subtitle">13 Caves</h3>
+        <p>Verborgen op de map (moeten ontdekt worden). Elke cave heeft een uniek type monsters (van onderwereld, gestuurd door Black Mage). Doel: <strong>Runes farmen</strong> (voor Kingdom Upgrades), XP, resources, en specifieke beesten killen voor quest-objectives. Caves zijn altijd beschikbaar; quests zijn meermalig.</p>
+
+        <h3 class="storyline-subtitle">Anomalies</h3>
+        <p>Getriggerd door <strong>Staff & events</strong> OF in <strong>bepaalde quests</strong> (niet door Kingdom-milestones of corruption meters).</p>
+
+        <h3 class="storyline-subtitle">Story Gates</h3>
+        <ul class="storyline-list">
+          <li><strong>Level 5 (Town):</strong> Eerste echte Kingdom Quest (King's Advice Room) → introductie wereldproblemen</li>
+          <li><strong>Level 10 (County):</strong> Verplicht Kingdom Storyline tot County-chapter (story gate)</li>
+          <li><strong>Level 15 (Kingdom):</strong> Finale boss battle bij seal-locatie</li>
+          <li><strong>Na Level 15:</strong> Restoratie-quests en uitroeiing van overgebleven anomalies</li>
+        </ul>
+
+        <h3 class="storyline-subtitle">Spelers Ontdekken de Story</h3>
+        <p>Progressieve onthulling: ruïnes (hints) → handelsposten questline → Zuidmarkt handelsmeester laat geheim los → plot twist (havemeesters beïnvloed door Black Mage) → seal-locatie onthuld → Orde van Vijf komt terug op het einde.</p>
+
+        <h3 class="storyline-subtitle">Finale Boss Battle</h3>
+        <p><strong>Server-wide event:</strong> Alle Kingdoms moeten deelnemen bij de seal-locatie.</p>
+        <p><strong>Seal requirements:</strong> Nog later te bepalen. Het hele Kingdom moet binnen 1 uur veel requirements behalen om de seal tegen te houden.</p>
+        <p><strong>Twee uitkomsten:</strong></p>
+        <ul class="storyline-list">
+          <li><strong>Seal tegengehouden:</strong> Makkelijkere eindbattle</li>
+          <li><strong>Seal NIET tegengehouden:</strong> Boss battle 5x sterker (later te bepalen hoe precies)</li>
+        </ul>
+        <p><strong>Na finale:</strong> Main questline voltooid; follow-up quests voor schadeherstel, gesprekken met belangrijke personen (Orde van Vijf, handelsposten eigenaren), en uitroeiing van overgebleven anomalies.</p>
+
+        <h3 class="storyline-subtitle">Runes & Kingdom Upgrades</h3>
+        <p>Runes kunnen gebruikt worden om <strong>Kingdom Upgrades</strong> te kopen. Er zijn 6 categorieën met elk 6 levels:</p>
+        <ul class="storyline-list">
+          <li><strong>Influence:</strong> Religion slots, chest locks, ally slots, extra claims, settlements, block interaction range</li>
+          <li><strong>Forging:</strong> Furnace speed en fuel efficiency (+5% tot +30%)</li>
+          <li><strong>Alchemy:</strong> Bonus XP en War Shield (+5% tot +17.5% XP, +10% War Shield)</li>
+          <li><strong>Cultivation:</strong> Crop speed en Fishing Skill (+10% tot +30% crop speed, +8% tot +14.5% fishing)</li>
+          <li><strong>Commerce:</strong> Market discount (+3.25% tot +8%)</li>
+          <li><strong>Warfare:</strong> Enchantment cap (Level 27-42) en War Cooldown (-10%)</li>
+        </ul>
+        <p>Runes worden gefarmd in de 13 caves op de map.</p>
+
+        <p class="storyline-link"><a href="../STORYLINE.md" target="_blank">→ Zie STORYLINE.md voor volledige documentatie, Q&A en suggesties</a></p>
+      </div>
+    </section>
+
+    <section id="koning" class="section section-collapsible">
+      <h2 class="section-title">Koning & metgezellen</h2>
+      <div class="section-content">
+        <p>Alleen de <strong>koning</strong> mag op chapter-eindes en eindbaas-momenten de hoofdlijn starten of verderzetten. Dan moeten er <strong>metgezellen</strong> van dezelfde groep in de buurt zijn met de juiste quest-tags (Scout, Soldaat). <strong>Volgorde companion-questlijnen:</strong> je moet eerst <strong>Scout</strong> hebben uitgespeeld voordat je de <strong>Soldaat</strong>-questlijn kunt doen; in BetonQuest: condition <code>scout_questline_done</code> om Soldaat te starten.</p>
+        <div class="king-flow">
+          <div class="flow-step flow-start">
+            <span class="flow-icon">♔</span>
+            Koning wil chapter-einde / eindbaas starten
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-checks">
+            <div class="flow-check">Permissie (LuckPerms)?</div>
+            <div class="flow-check">Zelfde groep?</div>
+            <div class="flow-check">Genoeg metgezellen in de buurt (30–50 blokken)?</div>
+            <div class="flow-check">Juiste tags (scout_questline_done, soldier_questline_done)? Scout vóór Soldaat.</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-outcomes">
+            <div class="flow-outcome flow-yes">
+              <span class="flow-icon">✓</span> Ja → Start met BetonQuest Parties (koning + metgezellen)
+            </div>
+            <div class="flow-outcome flow-no">
+              <span class="flow-icon">✗</span> Nee → Melding: "Je hebt X soldaten van je groep hier nodig."
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plugins" class="section section-collapsible">
+      <h2 class="section-title">Technische afhankelijkheden</h2>
+      <div class="section-content">
+        <div class="plugins-grid">
+          <div class="plugin-card plugin-required">
+            <span class="plugin-badge">Verplicht</span>
+            <h3>BetonQuest 3.0</h3>
+            <p>Questlogica, gesprekken, objectives, menu's, Parties.</p>
+          </div>
+          <div class="plugin-card plugin-required">
+            <span class="plugin-badge">Verplicht</span>
+            <h3>Citizens</h3>
+            <p>NPC's voor gesprekken.</p>
+          </div>
+          <div class="plugin-card plugin-required">
+            <span class="plugin-badge">Verplicht</span>
+            <h3>LuckPerms</h3>
+            <p>Permissie voor de koning (bv. betonquest.king).</p>
+          </div>
+          <div class="plugin-card plugin-required">
+            <span class="plugin-badge">Verplicht</span>
+            <h3>PlaceholderAPI + groups-plugin</h3>
+            <p>Check of speler in dezelfde groep zit als de koning.</p>
+          </div>
+          <div class="plugin-card plugin-optional">
+            <span class="plugin-badge plugin-badge-optional">Optioneel</span>
+            <h3>WorldGuard</h3>
+            <p>Regio's (bv. alleen in haven quest starten).</p>
+          </div>
+          <div class="plugin-card plugin-optional">
+            <span class="plugin-badge plugin-badge-optional">Optioneel</span>
+            <h3>Vault + economy</h3>
+            <p>Later voor geld; nu niet nodig (XP + gouden appels).</p>
+          </div>
+          <div class="plugin-card plugin-optional">
+            <span class="plugin-badge plugin-badge-optional">Optioneel</span>
+            <h3>DecentHolograms</h3>
+            <p>Hologrammen boven NPC's of locaties.</p>
+          </div>
+          <div class="plugin-card plugin-optional">
+            <span class="plugin-badge plugin-badge-optional">Optioneel</span>
+            <h3>Datapack</h3>
+            <p>Custom advancements bij quest-voltooiing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages" class="section section-collapsible">
+      <h2 class="section-title">Package-structuur</h2>
+      <div class="section-content">
+        <p>Eén map per questlijn onder <code>QuestPackages/</code>. Alles van die lijn blijft daar. Naamsuggestie (Nederlands): <code>koninkrijk</code> (hoofd), <code>noordhaven</code>, <code>zuidmarkt</code>, <code>handel</code>, <code>intrige</code>, <code>verlaten_toren</code> (of vergelijkbaar), plus 1–2 standalone packages zoals <code>haven_verhalen</code>.</p>
+        <div class="packages-tree">
+          <div class="package-item package-hoofdlijn"><code>koninkrijk</code> <span class="package-type">hoofdlijn</span></div>
+          <div class="package-item package-haven"><code>noordhaven</code> <span class="package-type">handelspost</span></div>
+          <div class="package-item package-haven"><code>zuidmarkt</code> <span class="package-type">handelspost</span></div>
+          <div class="package-item package-vertakking"><code>handel</code> <span class="package-type">vertakking</span></div>
+          <div class="package-item package-vertakking"><code>intrige</code> <span class="package-type">vertakking</span></div>
+          <div class="package-item package-vertakking"><code>verlaten_toren</code> <span class="package-type">vertakking</span></div>
+          <div class="package-item package-standalone"><code>haven_verhalen</code> <span class="package-type">standalone</span></div>
+          <div class="package-item package-groep"><code>groepsquest</code> <span class="package-type">groep</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section section-collapsible">
+      <h2 class="section-title">Volgorde van uitwerken</h2>
+      <div class="section-content">
+        <ol class="roadmap-list">
+          <li class="roadmap-step" data-desc="Taal nl-NL; containment-doc (welk package waarvoor).">
+            <span class="roadmap-num">1</span> Basis
+          </li>
+          <li class="roadmap-step" data-desc="Progress-menu (alleen actieve quests); voltooiing: XP, gouden appels, actionbar/chat/geluid, vuurwerk, advancements.">
+            <span class="roadmap-num">2</span> Menu en feedback
+          </li>
+          <li class="roadmap-step" data-desc="Package koninkrijk, eerste gesprekken NL, eenmalig patroon, tier-tags.">
+            <span class="roadmap-num">3</span> Hoofdlijn
+          </li>
+          <li class="roadmap-step" data-desc="Twee packages (noordhaven, zuidmarkt), korte intro-quests.">
+            <span class="roadmap-num">4</span> Handelsposten
+          </li>
+          <li class="roadmap-step" data-desc="Een voor een: handel, intrige, verlaten_toren (of vergelijkbaar).">
+            <span class="roadmap-num">5</span> Vertakkingen
+          </li>
+          <li class="roadmap-step" data-desc="1–2 losse packages, bv. haven_verhalen; eenmalige quests per haven of locatie.">
+            <span class="roadmap-num">6</span> Standalone
+          </li>
+          <li class="roadmap-step" data-desc="Eigen package, waarschuwing 'met anderen', Parties, min. 2 spelers.">
+            <span class="roadmap-num">7</span> Groepsquestlijn
+          </li>
+          <li class="roadmap-step" data-desc="Zodat spelers als metgezel meetellen bij de koning.">
+            <span class="roadmap-num">8</span> Companion-questlijnen
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="meer-info" class="section section-collapsible">
+      <h2 class="section-title">Waar meer info staat</h2>
+      <div class="section-content">
+        <ul class="info-links">
+          <li>Volledige technische plan (origineel bestand)</li>
+          <li><a href="#" rel="noopener">FORMATTING.md</a> – Kleuren en stijl voor gesprekken</li>
+          <li><a href="#" rel="noopener">ONE-TIME-QUESTS.md</a> – Hoe eenmalige quests werken</li>
+          <li><a href="https://betonquest.org/3.0-DEV/Documentation/Features/Menus/Menu/" target="_blank" rel="noopener">BetonQuest Menus</a></li>
+          <li><a href="https://betonquest.org/3.0-DEV/Documentation/Scripting/Parties/" target="_blank" rel="noopener">BetonQuest Parties</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Kingdom Quest – Overzicht voor het team</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
