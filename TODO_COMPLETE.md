@@ -609,8 +609,39 @@ Dit document bevat ALLES waar nog aan gedacht moet worden, waar rekening mee geh
 - [ ] **Muur requirements** - Lengte/type muren per level
 - [ ] **Strategische gebouwen** - Aantal/type per level
 - [ ] **Culturele gebouwen** - Aantal/type per level
-- [ ] **Item requirements** - Welke items nodig per level?
+- [ ] **Item requirements** - Welke items nodig per level? (ZIE ONDERSTAANDE ITEMS LIJST)
 - [ ] **Story gate (Level 10)** - Exacte story requirements
+
+#### Item Requirements per Level
+
+**ZIE `KINGDOM_LEVEL_ITEMS.md` voor volledige item requirements per level.**
+
+**Overzicht:**
+- [ ] **Level 1 (Tribe):** Geen items vereist
+- [ ] **Level 2 (Outpost):** Items voor handelskar (hout, ijzer, touw, wol, kisten)
+- [ ] **Level 3 (Hamlet):** Materialen voor huizen (hout, steen, glas, deuren, trappen, kisten)
+- [ ] **Level 4 (Village):** Materialen voor muur/palissade en strategisch punt (steen, hout, ijzer, pijlen, bogen, fakkels, poorten)
+- [ ] **Level 5 (Town):** Materialen voor King's Advice Room en cultureel gebouw (steen, hout, goud, boeken, boekenkasten, banners, schilderijen, troon)
+- [ ] **Level 6-8 (Manor, Bastion, Barony):** Schalende materialen en verdedigingsitems
+- [ ] **Level 9-10 (Viscounty, County):** Betere materialen + story-artefacten (Level 10 story gate)
+- [ ] **Level 11-15 (March t/m Kingdom):** Duchy/Kingdom niveau items, troonzaal items, monumentale items
+- [ ] **Level 16-20 (Grand Kingdom t/m Grand Imperium):** Premium materialen, monumentale items, legendarische artefacten, item-donaties
+
+**Item Categorieën:**
+- [ ] Basis materialen (hout, steen, baksteen, nether baksteen)
+- [ ] Metaal & edelstenen (ijzer, goud, smaragd, lapis, diamanten)
+- [ ] Functionele items (glas, deuren, trappen, kisten, fakkels, poorten)
+- [ ] Verdediging items (pijlen, bogen, zwaarden, schilden, pantser)
+- [ ] Culturele items (boeken, boekenkasten, banners, schilderijen, standaards)
+- [ ] Custom items (troon, tafels, standaards, monumentale items, story-artefacten, koninklijke artefacten, legendarische artefacten, item-donaties)
+
+**Implementatie:**
+- [ ] Items systeem ontwerpen - Hoe worden items ingeleverd?
+- [ ] NPC/locatie voor item inlevering bepalen
+- [ ] Kingdom inventory systeem - Waar worden items opgeslagen?
+- [ ] Item tracking - Hoe worden items bijgehouden?
+- [ ] Custom items maken - Datapack of plugin voor custom items
+- [ ] Item balancing - Testen en aanpassen van item amounts
 
 ### 6.2 Kingdom Level Progression
 - [ ] **Level 1-5 (Vroeg)** - Requirements bepalen
