@@ -562,6 +562,58 @@ main {
   color: var(--gold-dim);
 }
 
+.kd-focus-bands {
+  margin: 1rem 0 1.5rem;
+}
+
+.kd-focus-band {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.4);
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.kd-focus-band.kd-focus-second-city {
+  border-left-width: 4px;
+  border-left-color: var(--gold);
+  background: rgba(201, 162, 39, 0.08);
+}
+
+.kd-rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.kd-rewards-table {
+  font-size: 0.85rem;
+}
+
+.kd-rewards-table th,
+.kd-rewards-table td {
+  padding: 0.4rem 0.5rem;
+}
+
+.kd-docs-link {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.kd-docs-link a {
+  color: var(--gold-dim);
+  text-decoration: none;
+}
+
+.kd-docs-link a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
 /* ----- Storyline sectie ----- */
 .storyline-subtitle {
   font-family: var(--font-heading);

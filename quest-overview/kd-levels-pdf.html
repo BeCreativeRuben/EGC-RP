@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KD-levels & NPC's – Kingdom Quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --parchment: #f4e4bc;
+      --parchment-dark: #e8d4a0;
+      --castle: #2c1810;
+      --text: #2c1810;
+      --text-muted: #5c4a3a;
+      --gold: #b8860b;
+      --gold-light: #c9a227;
+      --gold-dim: #8b6914;
+      --border: #8b6914;
+      --shadow: rgba(44, 24, 16, 0.15);
+      --danger: #8b2914;
+      --font-heading: 'Cinzel', Georgia, serif;
+      --font-body: 'EB Garamond', Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--parchment);
+      padding: 1rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pdf-note {
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+      background: var(--castle);
+      color: var(--parchment);
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .pdf-note strong { color: var(--gold-light); }
+    @media print {
+      .pdf-note { display: none !important; }
+      body { background: #fff; padding: 0; }
+      .section { box-shadow: none; break-inside: avoid; }
+    }
+    .section {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 2px 6px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.5);
+      overflow: hidden;
+      position: relative;
+    }
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      color: var(--gold-dim);
+      margin: 0;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(90deg, var(--parchment-dark) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .section-content {
+      padding: 1.25rem 1.5rem;
+    }
+    .section-content p:first-child { margin-top: 0; }
+    .section-content p { margin: 0.75rem 0; }
+    .section-content p:last-child { margin-bottom: 0; }
+    .section-content a { color: var(--gold-dim); text-decoration: none; }
+    .section-content a:hover { color: var(--gold); text-decoration: underline; }
+    .section-content code {
+      background: rgba(0,0,0,0.06);
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .kd-story-gate {
+      margin: 1rem 0;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--danger);
+      border-left-width: 4px;
+      border-radius: 6px;
+      background: rgba(139, 41, 20, 0.08);
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .kd-story-gate code {
+      background: rgba(0,0,0,0.06);
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .kd-table-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--gold-dim);
+      margin: 1.5rem 0 0.5rem;
+    }
+    .kd-table-title:first-of-type { margin-top: 0; }
+    .kd-table-intro {
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .kd-table-wrap {
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.5);
+    }
+    .kd-levels-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .kd-levels-table th,
+    .kd-levels-table td {
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .kd-levels-table th {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--gold-dim);
+      background: var(--parchment-dark);
+    }
+    .kd-levels-table tbody tr:hover { background: rgba(255,255,255,0.5); }
+    .kd-levels-table .kd-row-special { background: rgba(201, 162, 39, 0.12); }
+    .kd-levels-table .kd-row-story-gate {
+      background: rgba(139, 41, 20, 0.1);
+      border-left: 3px solid var(--danger);
+    }
+    .kd-levels-table td:first-child { font-weight: 600; color: var(--gold-dim); }
+    .kd-focus-bands { margin: 1rem 0 1.5rem; }
+    .kd-focus-band {
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.4);
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .kd-focus-band.kd-focus-second-city {
+      border-left-width: 4px;
+      border-left-color: var(--gold);
+      background: rgba(201, 162, 39, 0.08);
+    }
+    .kd-rewards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .kd-rewards-table { font-size: 0.85rem; }
+    .kd-rewards-table th, .kd-rewards-table td { padding: 0.4rem 0.5rem; }
+    .kd-levels-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .kd-level-card {
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--parchment-dark) 0%, var(--parchment) 100%);
+    }
+    .kd-level-badge {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      background: var(--gold);
+      color: var(--castle);
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .kd-level-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--gold-dim);
+      margin: 0 0 0.5rem;
+    }
+    .kd-level-card p { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
+    .kd-docs-link {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .kd-docs-link a { color: var(--gold-dim); text-decoration: none; }
+    .kd-docs-link a:hover { color: var(--gold); text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <p class="pdf-note"><strong>Opslaan als PDF:</strong> Open dit bestand in je browser (Chrome, Edge, Firefox) en kies <strong>Bestand → Afdrukken</strong> (of Ctrl+P), dan <strong>Bestemming: Opslaan als PDF</strong>. Deze instructie verdwijnt in de PDF.</p>
+
+  <section class="section">
+    <h1 class="section-title">KD-levels & NPC's</h1>
+    <div class="section-content">
+      <p>Er zijn <strong>20 Kingdom levels</strong> (1–20), gekoppeld aan de Tier-progressie (Tribe t/m Grand Imperium). Per level horen <strong>requirements qua builds en items</strong>: huizen, muren, strategische gebouwen (torens, poorten, kazerne), culturele gebouwen (tempel, markt, bibliotheek, troonzaal, enz.) — een echt werkend koninkrijk. Exacte aantallen per level kunnen later in een spreadsheet of config; hieronder de structuur en speciale regels.</p>
+      <p>Vanaf <strong>KD level 2</strong> staat op elk Kingdom een <strong>quest-NPC</strong> (handelskar, door spelers zelf te bouwen). Bij die NPC ontgrendelt men de <strong>BattlePass</strong> (daily quests, los van storylines) en <strong>2 startersquests</strong> (ontdekking handelsposten). Vanaf <strong>level 5</strong> komt de <strong>Kingdom Quest NPC</strong> in de <strong>"King's Advice Room"</strong>; alleen daar kan de koning de echte Kingdom Quests starten of verderzetten.</p>
+      <p>Als een speler bij een handelspost aankomt: backstory van de locatie (replaymod-achtige shots + gesproken uitleg) en een tip naar een persoon in de stad — <strong>van daar begint de individuele questlijn</strong> (Haven 1 alleen / Haven 2 alleen).</p>
+      <div class="kd-story-gate">
+        <strong>Story-gate level 10:</strong> Je kunt <em>niet</em> van level 10 (County) naar level 11 (March) zonder de <strong>Kingdom Storyline</strong> tot het vereiste punt te hebben uitgespeeld. Plugin of BetonQuest checkt bv. tag <code>koninkrijk.county_chapter_done</code> voordat level-up naar 11 mogelijk is.
+      </div>
+
+      <h3 class="kd-table-title">Thematische focus per level-band</h3>
+      <div class="kd-focus-bands">
+        <div class="kd-focus-band">
+          <strong>Levels 1–4: Farmers town / food production</strong> — Voedsel, basisgemeenschap, eerste handel. Sleutelwoorden: boeren, voedsel, handelskar, huizen, palissade, basisverdediging.
+        </div>
+        <div class="kd-focus-band">
+          <strong>Levels 5–9: Actual town</strong> — Muren, torens, poorten, strategische punten, King's Advice Room, culturele gebouwen. Sleutelwoorden: muren, omwalling, raadzaal.
+        </div>
+        <div class="kd-focus-band">
+          <strong>Levels 10–13: Main city development</strong> — Hoofdstad uitbouwen; story gate (10); county/duchy-gebouwen.
+        </div>
+        <div class="kd-focus-band kd-focus-second-city">
+          <strong>Level 14+: Second city (Commonwealth en hoger)</strong> — Naast de hoofdstad een <strong>tweede stad</strong>: <strong>12 huizen</strong>, <strong>2 professies</strong>, <strong>1 storage</strong>. Bewust klein en ondersteunend; het Kingdom beheert twee nederzettingen.
+        </div>
+      </div>
+
+      <h3 class="kd-table-title">Kingdom Level Requirements (1–20)</h3>
+      <p class="kd-table-intro">De 20 levels komen overeen met de tiers (Vroeg / Midden / Laat). Eisen schalen per level: meer huizen, langere muren, meer strategische en culturele gebouwen. <strong>Naast builds moeten er ook items ingeleverd worden per level.</strong> Zie KINGDOM_LEVELS.md (focus, tweede stad, rewards) en KINGDOM_LEVEL_ITEMS.md (item requirements).</p>
+      <div class="kd-table-wrap">
+        <table class="kd-levels-table">
+          <thead>
+            <tr>
+              <th>Level</th>
+              <th>Tier</th>
+              <th>Fase</th>
+              <th>Requirements / opmerking</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Tribe</td><td>Vroeg</td><td>Thuis/claim; geen formele gebouwen verplicht.</td></tr>
+            <tr class="kd-row-special"><td>2</td><td>Outpost</td><td>Vroeg</td><td><strong>Handelskar gebouwd</strong> → BattlePass + startersquests. Optioneel: schuur/opslag.</td></tr>
+            <tr><td>3</td><td>Hamlet</td><td>Vroeg</td><td>2+ huizen, 1 gemeenschappelijke ruimte.</td></tr>
+            <tr><td>4</td><td>Village</td><td>Vroeg</td><td>4+ huizen, begin muur/palissade, 1 strategisch punt (toren/poort).</td></tr>
+            <tr class="kd-row-special"><td>5</td><td>Town</td><td>Vroeg</td><td>8+ huizen, muur, <strong>King's Advice Room</strong> gebouwd, 1 cultureel gebouw (markt/kapel).</td></tr>
+            <tr><td>6</td><td>Manor</td><td>Vroeg</td><td>Meer huizen, uitgebreidere muur, extra strategisch/cultureel gebouw.</td></tr>
+            <tr><td>7</td><td>Bastion</td><td>Vroeg</td><td>Versterkte verdediging, meerdere torens/poorten.</td></tr>
+            <tr><td>8</td><td>Barony</td><td>Vroeg</td><td>Volledige omwalling, raadzaal of vergelijkbaar.</td></tr>
+            <tr><td>9</td><td>Viscounty</td><td>Midden</td><td>Groei naar verantwoordelijkheid: meer gebouwen, betere materialen.</td></tr>
+            <tr class="kd-row-story-gate"><td>10</td><td>County</td><td>Midden</td><td>Eisen voor County (huizen, muren, strategisch, cultureel). <strong>Level 11 alleen na Kingdom Storyline</strong> (story-gate).</td></tr>
+            <tr><td>11</td><td>March</td><td>Midden</td><td>Na story-gate: verder uitbreiden.</td></tr>
+            <tr><td>12</td><td>Duchy</td><td>Midden</td><td>Duchy-niveau gebouwen en verdediging.</td></tr>
+            <tr><td>13</td><td>Grand Duchy</td><td>Midden</td><td>Uitgebreide culturele en strategische gebouwen.</td></tr>
+            <tr class="kd-row-special"><td>14</td><td>Commonwealth</td><td>Midden</td><td><strong>Tweede stad</strong> (12 huizen, 2 professies, 1 storage); meerdere wijken, grote omwalling.</td></tr>
+            <tr><td>15</td><td>Kingdom</td><td>Midden</td><td>Troonzaal, meerdere culturele gebouwen, kazerne, sterke muren.</td></tr>
+            <tr><td>16</td><td>Grand Kingdom</td><td>Midden</td><td>Volledige koninkrijk-set, monumenten.</td></tr>
+            <tr><td>17</td><td>Empire</td><td>Laat</td><td>Erfenis & schaal: monumentale gebouwen.</td></tr>
+            <tr><td>18</td><td>Grand Empire</td><td>Laat</td><td>Grote omwalling, meerdere forten.</td></tr>
+            <tr><td>19</td><td>Imperium</td><td>Laat</td><td>Maximale strategische en culturele uitbreiding.</td></tr>
+            <tr><td>20</td><td>Grand Imperium</td><td>Laat</td><td>Hoogste tier: monumentaal koninkrijk, eventueel item-donaties.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="kd-table-title">Rewards bij level-up (Claims, Runes, Spawners)</h3>
+      <p class="kd-table-intro">Richtwaarden; kunnen per server gebalanceerd worden.</p>
+      <div class="kd-rewards-grid">
+        <div class="kd-table-wrap">
+          <table class="kd-levels-table kd-rewards-table">
+            <thead><tr><th>Level</th><th>Tier</th><th>Extra claims</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Tribe</td><td>Basis (start)</td></tr>
+              <tr><td>2</td><td>Outpost</td><td>+50</td></tr>
+              <tr><td>3–4</td><td>Hamlet–Village</td><td>+75, +100</td></tr>
+              <tr><td>5–8</td><td>Town–Barony</td><td>+150 t/m +300</td></tr>
+              <tr><td>9–10</td><td>Viscounty–County</td><td>+400, +500</td></tr>
+              <tr><td>11–13</td><td>March–Grand Duchy</td><td>+600 t/m +900</td></tr>
+              <tr><td>14</td><td>Commonwealth</td><td>+1100 (incl. 2e stad)</td></tr>
+              <tr><td>15–20</td><td>Kingdom–Grand Imperium</td><td>+1300 t/m +4000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="kd-table-wrap">
+          <table class="kd-levels-table kd-rewards-table">
+            <thead><tr><th>Level</th><th>Runes reward</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>0</td></tr>
+              <tr><td>2–4</td><td>+25, +40, +60</td></tr>
+              <tr><td>5–8</td><td>+100 t/m +275</td></tr>
+              <tr><td>9–13</td><td>+350 t/m +900</td></tr>
+              <tr><td>14–20</td><td>+1100 t/m +4000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="kd-table-wrap">
+          <table class="kd-levels-table kd-rewards-table">
+            <thead><tr><th>Level</th><th>Spawner reward</th></tr></thead>
+            <tbody>
+              <tr><td>1–4</td><td>Geen</td></tr>
+              <tr><td>5–6</td><td>1× passive</td></tr>
+              <tr><td>7–8</td><td>1× hostile</td></tr>
+              <tr><td>9</td><td>2× (1 passive, 1 hostile)</td></tr>
+              <tr><td>10–11</td><td>2× hostile</td></tr>
+              <tr><td>12–13</td><td>3× (mix)</td></tr>
+              <tr><td>14–15</td><td>4×</td></tr>
+              <tr><td>16–17</td><td>5×</td></tr>
+              <tr><td>18–19</td><td>6×</td></tr>
+              <tr><td>20</td><td>7× of 1× special + 6×</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="kd-levels-cards">
+        <div class="kd-level-card">
+          <span class="kd-level-badge">KD level 2</span>
+          <h3>Handelskar</h3>
+          <p>BattlePass (daily quests) + 2 startersquests = ontdekking handelsposten. Bij handelspost: backstory (replay-shots + gesproken uitleg) en tip naar persoon in de stad → daar start de individuele questlijn.</p>
+        </div>
+        <div class="kd-level-card">
+          <span class="kd-level-badge">KD level 5</span>
+          <h3>King's Advice Room</h3>
+          <p>Kingdom Quest NPC waar de koning de echte Kingdom Quests kan starten.</p>
+        </div>
+      </div>
+      <p class="kd-docs-link">→ KINGDOM_LEVELS.md (focus, tweede stad, rewards) · KINGDOM_LEVEL_ITEMS.md (item requirements)</p>
+    </div>
+  </section>
+</body>
+</html>

@@ -150,8 +150,24 @@
           <strong>Story-gate level 10:</strong> Je kunt <em>niet</em> van level 10 (County) naar level 11 (March) zonder de <strong>Kingdom Storyline</strong> tot het vereiste punt te hebben uitgespeeld. Plugin of BetonQuest checkt bv. tag <code>koninkrijk.county_chapter_done</code> voordat level-up naar 11 mogelijk is.
         </div>
 
+        <h3 class="kd-table-title">Thematische focus per level-band</h3>
+        <div class="kd-focus-bands">
+          <div class="kd-focus-band">
+            <strong>Levels 1–4: Farmers town / food production</strong> — Voedsel, basisgemeenschap, eerste handel. Sleutelwoorden: boeren, voedsel, handelskar, huizen, palissade, basisverdediging.
+          </div>
+          <div class="kd-focus-band">
+            <strong>Levels 5–9: Actual town</strong> — Muren, torens, poorten, strategische punten, King's Advice Room, culturele gebouwen. Sleutelwoorden: muren, omwalling, raadzaal.
+          </div>
+          <div class="kd-focus-band">
+            <strong>Levels 10–13: Main city development</strong> — Hoofdstad uitbouwen; story gate (10); county/duchy-gebouwen.
+          </div>
+          <div class="kd-focus-band kd-focus-second-city">
+            <strong>Level 14+: Second city (Commonwealth en hoger)</strong> — Naast de hoofdstad een <strong>tweede stad</strong>: <strong>12 huizen</strong>, <strong>2 professies</strong>, <strong>1 storage</strong>. Bewust klein en ondersteunend; het Kingdom beheert twee nederzettingen.
+          </div>
+        </div>
+
         <h3 class="kd-table-title">Kingdom Level Requirements (1–20)</h3>
-        <p class="kd-table-intro">De 20 levels komen overeen met de tiers in de sectie Tier-progressie (Vroeg / Midden / Laat). Eisen schalen per level: meer huizen, langere muren, meer strategische en culturele gebouwen. <strong>Naast builds moeten er ook items ingeleverd worden per level.</strong> Zie <a href="../KINGDOM_LEVEL_ITEMS.md" target="_blank">KINGDOM_LEVEL_ITEMS.md</a> voor volledige item requirements.</p>
+        <p class="kd-table-intro">De 20 levels komen overeen met de tiers in de sectie Tier-progressie (Vroeg / Midden / Laat). Eisen schalen per level: meer huizen, langere muren, meer strategische en culturele gebouwen. <strong>Naast builds moeten er ook items ingeleverd worden per level.</strong> Zie <a href="../KINGDOM_LEVELS.md" target="_blank">KINGDOM_LEVELS.md</a> (focus, tweede stad, rewards) en <a href="../KINGDOM_LEVEL_ITEMS.md" target="_blank">KINGDOM_LEVEL_ITEMS.md</a> (item requirements).</p>
         <div class="kd-table-wrap">
           <table class="kd-levels-table">
             <thead>
@@ -176,7 +192,7 @@
               <tr><td>11</td><td>March</td><td>Midden</td><td>Na story-gate: verder uitbreiden.</td></tr>
               <tr><td>12</td><td>Duchy</td><td>Midden</td><td>Duchy-niveau gebouwen en verdediging.</td></tr>
               <tr><td>13</td><td>Grand Duchy</td><td>Midden</td><td>Uitgebreide culturele en strategische gebouwen.</td></tr>
-              <tr><td>14</td><td>Commonwealth</td><td>Midden</td><td>Meerdere wijken, grote omwalling.</td></tr>
+              <tr class="kd-row-special"><td>14</td><td>Commonwealth</td><td>Midden</td><td><strong>Tweede stad</strong> (12 huizen, 2 professies, 1 storage); meerdere wijken, grote omwalling.</td></tr>
               <tr><td>15</td><td>Kingdom</td><td>Midden</td><td>Troonzaal, meerdere culturele gebouwen, kazerne, sterke muren.</td></tr>
               <tr><td>16</td><td>Grand Kingdom</td><td>Midden</td><td>Volledige koninkrijk-set, monumenten.</td></tr>
               <tr><td>17</td><td>Empire</td><td>Laat</td><td>Erfenis & schaal: monumentale gebouwen.</td></tr>
@@ -185,6 +201,55 @@
               <tr><td>20</td><td>Grand Imperium</td><td>Laat</td><td>Hoogste tier: monumentaal koninkrijk, eventueel item-donaties.</td></tr>
             </tbody>
           </table>
+        </div>
+
+        <h3 class="kd-table-title">Rewards bij level-up (Claims, Runes, Spawners)</h3>
+        <p class="kd-table-intro">Richtwaarden; kunnen per server gebalanceerd worden.</p>
+        <div class="kd-rewards-grid">
+          <div class="kd-table-wrap">
+            <table class="kd-levels-table kd-rewards-table">
+              <thead><tr><th>Level</th><th>Tier</th><th>Extra claims</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Tribe</td><td>Basis (start)</td></tr>
+                <tr><td>2</td><td>Outpost</td><td>+50</td></tr>
+                <tr><td>3–4</td><td>Hamlet–Village</td><td>+75, +100</td></tr>
+                <tr><td>5–8</td><td>Town–Barony</td><td>+150 t/m +300</td></tr>
+                <tr><td>9–10</td><td>Viscounty–County</td><td>+400, +500</td></tr>
+                <tr><td>11–13</td><td>March–Grand Duchy</td><td>+600 t/m +900</td></tr>
+                <tr><td>14</td><td>Commonwealth</td><td>+1100 (incl. 2e stad)</td></tr>
+                <tr><td>15–20</td><td>Kingdom–Grand Imperium</td><td>+1300 t/m +4000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="kd-table-wrap">
+            <table class="kd-levels-table kd-rewards-table">
+              <thead><tr><th>Level</th><th>Runes reward</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>0</td></tr>
+                <tr><td>2–4</td><td>+25, +40, +60</td></tr>
+                <tr><td>5–8</td><td>+100 t/m +275</td></tr>
+                <tr><td>9–13</td><td>+350 t/m +900</td></tr>
+                <tr><td>14–20</td><td>+1100 t/m +4000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="kd-table-wrap">
+            <table class="kd-levels-table kd-rewards-table">
+              <thead><tr><th>Level</th><th>Spawner reward</th></tr></thead>
+              <tbody>
+                <tr><td>1–4</td><td>Geen</td></tr>
+                <tr><td>5–6</td><td>1× passive</td></tr>
+                <tr><td>7–8</td><td>1× hostile</td></tr>
+                <tr><td>9</td><td>2× (1 passive, 1 hostile)</td></tr>
+                <tr><td>10–11</td><td>2× hostile</td></tr>
+                <tr><td>12–13</td><td>3× (mix)</td></tr>
+                <tr><td>14–15</td><td>4×</td></tr>
+                <tr><td>16–17</td><td>5×</td></tr>
+                <tr><td>18–19</td><td>6×</td></tr>
+                <tr><td>20</td><td>7× of 1× special + 6×</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="kd-levels-cards">
@@ -199,6 +264,7 @@
             <p>Kingdom Quest NPC waar de koning de echte Kingdom Quests kan starten.</p>
           </div>
         </div>
+        <p class="kd-docs-link">→ <a href="../KINGDOM_LEVELS.md" target="_blank">KINGDOM_LEVELS.md</a> (focus, tweede stad, rewards) · <a href="../KINGDOM_LEVEL_ITEMS.md" target="_blank">KINGDOM_LEVEL_ITEMS.md</a> (item requirements)</p>
       </div>
     </section>
 

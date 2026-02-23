@@ -1,6 +1,6 @@
 # Kingdom Level Item Requirements
 
-Dit document bevat de **extra item requirements** per Kingdom Level. Deze items moeten **naast de builds** ingeleverd worden als belasting/tribute om naar het volgende level te kunnen. Dit zijn **niet** de materialen die gebruikt worden voor het bouwen zelf, maar extra items die het Kingdom moet doneren als belasting of tribute.
+Dit document bevat de **extra item requirements** per Kingdom Level. Voor **thematische focus** (farmers town, walls, main city, tweede stad), **tweede stad specificatie** (level 14+) en **rewards** (Claims, Runes, Spawners) zie **`KINGDOM_LEVELS.md`**. Deze items moeten **naast de builds** ingeleverd worden als belasting/tribute om naar het volgende level te kunnen. Dit zijn **niet** de materialen die gebruikt worden voor het bouwen zelf, maar extra items die het Kingdom moet doneren als belasting of tribute.
 
 ---
 
